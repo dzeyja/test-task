@@ -13,8 +13,8 @@ export const authByInstance = createAsyncThunk<{stateInstance: string}, void, Th
             extra
         } = thunkAPI
 
-        const idInstance = getAuthByInstaceIdInstace(getState())
-        const apiTokenInstance = getAuthByInstaceApiToken(getState())
+        const idInstance = '7103187205'
+        const apiTokenInstance = 'f993aa6fef8b4381ba7decd17fb07e3b852c155337ee47b99d'
 
         try {
             const response = await extra.api.get(`/waInstance${idInstance}/getStateInstance/${apiTokenInstance}`)

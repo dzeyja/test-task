@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export const $api = axios.create({
-    baseURL: 'https://api.green-api.com'
+    baseURL: 'https://7103.api.greenapi.com'
 })

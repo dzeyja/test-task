@@ -3,11 +3,13 @@ import { StateSchema, ThunkExtraArg } from "./StateSchema"
 import { userReducer } from "entities/User"
 import { AuthByInstanceimportReducer } from "features/AuthByInstace"
 import { $api } from "shared/api/api"
+import { sendMessageReducer } from "features/SendMessage"
 
 export function createReduxStore() {
     const rootState: ReducersMapObject<StateSchema> = {
         user: userReducer,
-        authByInstance: AuthByInstanceimportReducer
+        authByInstance: AuthByInstanceimportReducer,
+        sendMessage: sendMessageReducer
     }
 
     const extraArg: ThunkExtraArg = {
