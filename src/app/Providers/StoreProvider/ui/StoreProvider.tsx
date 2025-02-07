@@ -3,7 +3,7 @@ import { createReduxStore } from "../config/store"
 import { ReactNode } from "react"
 
 interface StoreProviderProps {
-    children: ReactNode
+    children?: ReactNode
 }
 
 export const StoreProvider = ({ children }: StoreProviderProps) => {

@@ -1,14 +1,10 @@
 import { getSendMessageChatId, getSendMessageMessage } from "features/SendMessage/model/selectors/SendMessageSelectors"
-import { sendMessage } from "features/SendMessage/model/services/sendMessage"
-import { sendMessageActions } from "features/SendMessage/model/slice/sendMessageSlice"
+import { sendMessage } from "../../model/services/sendMessage"
+import { sendMessageActions } from "../../model/slice/sendMessageSlice"
 import React, { memo, useCallback } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
-interface SendMessageFormProps {
-     
-}
-
-export const SendMessageForm = memo(({  }: SendMessageFormProps) => {
+export const SendMessageForm = memo(() => {
     const dispatch = useDispatch()
     const chatId = useSelector(getSendMessageChatId)
     const message = useSelector(getSendMessageMessage)

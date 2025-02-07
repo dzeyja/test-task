@@ -1,10 +1,10 @@
 import { AuthByInstanceimportActions } from "features/AuthByInstace/model/slice/AuthByInstanceSlice"
 import { getAuthByInstaceApiToken, getAuthByInstaceError, getAuthByInstaceIdInstace } from "../../model/selectors/AuthByInstaceSelectors"
 import { useDispatch, useSelector } from "react-redux"
-import { ChangeEvent } from "react"
+import { ChangeEvent, memo } from "react"
 import { authByInstance } from "../../model/services/AuthByInstanceThunk"
 
-export const AuthByInstaceForm = () => {
+export const AuthByInstaceForm = memo(() => {
     const dispatch = useDispatch()
     const idInstance = useSelector(getAuthByInstaceIdInstace)
     const apiToken = useSelector(getAuthByInstaceApiToken)
@@ -40,4 +40,4 @@ export const AuthByInstaceForm = () => {
             </button>
         </form>
     )
-}
+})
