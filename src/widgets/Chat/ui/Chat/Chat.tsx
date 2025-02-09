@@ -1,11 +1,15 @@
 import { SendMessageForm } from "features/SendMessage"
-export const Chat = () => {
+import { memo } from "react"
+
+interface ChatProps {
+    chatId: string
+}
+
+export const Chat = memo(({ chatId }: ChatProps) => {
 
     return (
-        <div className="relative w-full flex-grow bg-green-200 h-screen" >
-            <div className="absolute bottom-5 left-0">
-                <SendMessageForm />
+            <div className="p-8 w-full bg-green-200 h-4/5 flex flex-col justify-end ">
+                <SendMessageForm chatId={chatId} />
             </div>
-        </div>
     )
-}
+})
