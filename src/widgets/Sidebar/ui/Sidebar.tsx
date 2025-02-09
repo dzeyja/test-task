@@ -21,22 +21,22 @@ export const Sidebar = memo(() => {
 
     const handleClose = useCallback(() => {
         setIsOpen(false)
-    }, [])
+    }, [isOpen])
 
     const handleOpenChat = useCallback(() => {
         setIsOpenChat(true)
-    }, [isOpen])
+    }, [isOpenChat])
 
     const handleCloseChat = useCallback(() => {
         setIsOpenChat(false)
-    }, [])
+    }, [isOpenChat])
 
     const onClickLink = useCallback((chatId) => {
         navigate(`/chat/${chatId}`)
     }, [navigate])
 
     return (
-        <div className=' border w-80 h-screen bg-white'>
+        <div className='border w-80 h-screen bg-white shadow-xl'>
             <div className="w-full mb-10 p-6 flex justify-between items-center">
                 <div className="text-3xl font-bold">
                     Чаты
@@ -47,15 +47,21 @@ export const Sidebar = memo(() => {
                 </div>
             </div>
             <div className="h-full overflow-auto">
-                {chats.map((chat) => (
-                    <div key={chat.chatId} onClick={() => onClickLink(chat.chatId)} className="w-2xl border p-3 flex gap-2 cursor-pointer">
-                        <div className="w-12 h-12 rounded-full bg-red border">
+                {chats.length > 0 ? (
+                    chats.map((chat) => (
+                        <div key={chat.chatId} onClick={() => onClickLink(chat.chatId)} className="w-2xl border p-3 flex gap-2 cursor-pointer">
+                            <div className="w-12 h-12 rounded-full bg-red border">
+                            </div>
+                            <div className="text-xl">
+                                {chat.chatId}
+                            </div>
                         </div>
-                        <div className="text-xl">
-                            {chat.chatId}
-                        </div>
+                    ))
+                ) : (
+                    <div className="text-center text-xl font-medium">
+                        У вас пока нету чатов
                     </div>
-                ))}
+                )} 
             </div>
             <Modal isOpen={isOpen} onClose={handleClose}>
                 <AuthByInstaceForm />

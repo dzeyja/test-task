@@ -3,6 +3,7 @@ import { getAuthByInstaceApiToken, getAuthByInstaceIdInstace } from "../selector
 import { ThunkConfig } from "app/Providers/StoreProvider"
 import { userActions } from "entities/User"
 import { User } from "entities/User/model/types/user"
+import { USER_LOCALSTORAGE_KEY } from "shared/consts/localStorage/localStorage"
 
 export const authByInstance = createAsyncThunk<{stateInstance: string}, void, ThunkConfig<string>>(
     'authByInstance',
@@ -13,8 +14,8 @@ export const authByInstance = createAsyncThunk<{stateInstance: string}, void, Th
             extra
         } = thunkAPI
 
-        const idInstance = '7103187205'
-        const apiTokenInstance = 'f993aa6fef8b4381ba7decd17fb07e3b852c155337ee47b99d'
+        const idInstance = getAuthByInstaceIdInstace(getState())
+        const apiTokenInstance = getAuthByInstaceApiToken(getState())
 
         try {
             const response = await extra.api.get(`/waInstance${idInstance}/getStateInstance/${apiTokenInstance}`)
@@ -23,6 +24,7 @@ export const authByInstance = createAsyncThunk<{stateInstance: string}, void, Th
                 apiTokenInstance
             }
             thunkAPI.dispatch(userActions.setAuthData(authData))
+            localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(authData))
 
             return response.data
         } catch (error) {

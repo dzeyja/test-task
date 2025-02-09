@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { ThunkConfig } from "app/Providers/StoreProvider"
 import { getUserData } from "entities/User"
+import { sendMessageActions } from "../slice/sendMessageSlice"
 
 interface SendMessageArg {
     chatId: string
@@ -13,7 +14,8 @@ export const sendMessage = createAsyncThunk<void, SendMessageArg, ThunkConfig<st
         const {
             rejectWithValue,
             getState,
-            extra
+            extra,
+            dispatch
         } = thunkAPI
 
         const userData = getUserData(getState())
@@ -23,7 +25,9 @@ export const sendMessage = createAsyncThunk<void, SendMessageArg, ThunkConfig<st
                 chatId: `${chatId}@c.us`,
                 message
             })
-            
+
+            dispatch(sendMessageActions.setMessage(''))
+
             return response.data
         } catch (error) {
             rejectWithValue('error')

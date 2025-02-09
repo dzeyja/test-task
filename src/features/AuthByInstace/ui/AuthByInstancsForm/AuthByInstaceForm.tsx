@@ -1,4 +1,4 @@
-import { AuthByInstanceimportActions } from "features/AuthByInstace/model/slice/AuthByInstanceSlice"
+import { AuthByInstanceimportActions } from "../../model/slice/AuthByInstanceSlice"
 import { getAuthByInstaceApiToken, getAuthByInstaceError, getAuthByInstaceIdInstace } from "../../model/selectors/AuthByInstaceSelectors"
 import { useDispatch, useSelector } from "react-redux"
 import { ChangeEvent, memo } from "react"
