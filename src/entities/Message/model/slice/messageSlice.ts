@@ -34,7 +34,7 @@ export const messageSlice = createSlice({
                     chatId: data.body.senderData.chatId,
                     sender: "other",
                     text: textMessage,
-                    timestamp: data.body.timestamp,
+                    timestamp: Date.now(),
                     receiptId: data.receiptId, 
                 };
                 
@@ -48,7 +48,7 @@ export const messageSlice = createSlice({
                     chatId,
                     sender: "me",
                     text: message,
-                    timestamp: Math.floor(Date.now() / 1000),
+                    timestamp: Date.now(),
                 };
 
                 state.messages.push(newMessage)

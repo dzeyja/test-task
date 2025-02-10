@@ -3,14 +3,20 @@ import { ChatPageHeader } from "../ChatPageHeader/ChatPageHeader";
 import { memo, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { deleteNotification, receiveNotification } from "entities/Message";
+import { deleteNotification, messageReducer, receiveNotification } from "entities/Message";
 import { StateSchema } from "app/Providers/StoreProvider";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch";
+import { DynamicModuleLoader, ReducersList } from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+import { sendMessageReducer } from "features/SendMessage";
+
+const reducers: ReducersList = {
+  sendMessage: sendMessageReducer
+} 
 
 const ChatPage = memo(() => {
-const { id } = useParams<{ id: string }>();
+  const { id } = useParams<{ id: string }>();
   const messages = useSelector((state: StateSchema) =>
-    state.message.messages.filter((message) => message.chatId === id)
+    state?.message?.messages.filter((message) => message.chatId === id)
   );
   const dispatch = useAppDispatch();
 
@@ -38,13 +44,15 @@ const { id } = useParams<{ id: string }>();
     const intervalId = setInterval(fetchMessages, 5000);
   
     return () => clearInterval(intervalId);
-  }, [dispatch, id]);;   
+  }, [dispatch, id]); 
   
   return (
+    <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
       <div className="shadow-xl h-screen flex flex-col flex-grow w-full">
         <ChatPageHeader chatId={id} />
         <Chat messages={messages} chatId={id} />
       </div>
+    </DynamicModuleLoader>
   );
 });
 

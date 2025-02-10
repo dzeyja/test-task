@@ -9,9 +9,10 @@ import { SendMessageSchema } from "features/SendMessage";
 export interface StateSchema {
     user: UserSchema
     authByInstance: AuthByInstanceSchema
-    sendMessage: SendMessageSchema
     createChat: CreateChatSchema
     message: MesagesSchema
+    // Ассинхронные редуссеры
+    sendMessage?: SendMessageSchema
 }
 
 export type StateSchemaKey = keyof StateSchema
