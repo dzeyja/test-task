@@ -1,1 +1,1 @@
-export { ChatPage } from './ui/ChatPage/ChatPage'
+export { ChatPageAsync as ChatPage } from './ui/ChatPage/ChatPage.async'

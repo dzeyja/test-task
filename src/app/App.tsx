@@ -1,6 +1,6 @@
 import { Sidebar } from "widgets/Sidebar"
 import { AppRoutes } from "app/Providers/RouteProvider"
-import { useEffect } from "react"
+import { Suspense, useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { userActions } from "entities/User"
 
@@ -12,11 +12,13 @@ const App = () => {
 
     return (
         <div className="bg-primary h-24">
-            <div className="max-w-7xl p-6 mx-auto z-10 flex ">
+            <div className="max-w-7xl p-6 mx-auto z-10 flex">
                 <Sidebar />
-                <div className="w-full flex-grow ">
-                    <AppRoutes />
-                </div>
+                <Suspense fallback="...">
+                    <div className="ml-80 w-[calc(100vw-20rem)] h-screen">
+                        <AppRoutes />
+                    </div>
+                </Suspense>
             </div>
         </div>
     )

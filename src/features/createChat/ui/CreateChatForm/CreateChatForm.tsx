@@ -1,9 +1,10 @@
 import { useDispatch } from "react-redux"
-import React, { useState } from "react"
-import { createChatActions } from "../model/slice/createChatSlice"
+import React, { memo, useState } from "react"
+import { createChatActions } from "../../model/slice/createChatSlice"
+import { Button } from "shared/ui/Button/Button"
 
-export const CreateChatForm = () => {
-    const [chatId, setChatId] = useState('')
+const CreateChatForm = memo(() => {
+    const [chatId, setChatId] = useState('@c.us')
     const dispatch = useDispatch()
 
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,9 +23,11 @@ export const CreateChatForm = () => {
                 Создать чат
             </div>
             <input className="p-2 rounded-lg w-80 mb-5 border-2" placeholder="Номер телефона" value={chatId} onChange={changeHandler}/>
-            <button className="px-8 py-2 border mt-5 bg-green-600 text-white" onClick={onClickCreateChat}>
+            <Button onClick={onClickCreateChat}>
                 Создать
-            </button>
+            </Button>
         </form>
     )
-}
+})
+
+export default CreateChatForm

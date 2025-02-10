@@ -1,6 +1,6 @@
 export { AuthByInstanceSchema } from './model/types/AuthByInstance'
 export { AuthByInstanceimportReducer } from './model/slice/AuthByInstanceSlice'
-export { AuthByInstaceForm } from './ui/AuthByInstancsForm/AuthByInstaceForm'
+export { AuthByInstaceModal } from './ui/AuthByInstanceModal/AuthByInstaceModal'
 // export { 
 //     getAuthByInstaceApiToken, 
 //     getAuthByInstaceError,

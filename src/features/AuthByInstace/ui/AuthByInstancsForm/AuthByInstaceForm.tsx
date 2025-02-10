@@ -3,8 +3,9 @@ import { getAuthByInstaceApiToken, getAuthByInstaceError, getAuthByInstaceIdInst
 import { useDispatch, useSelector } from "react-redux"
 import { ChangeEvent, memo } from "react"
 import { authByInstance } from "../../model/services/AuthByInstanceThunk"
+import { Button } from "shared/ui/Button/Button"
 
-export const AuthByInstaceForm = memo(() => {
+const AuthByInstaceForm = memo(() => {
     const dispatch = useDispatch()
     const idInstance = useSelector(getAuthByInstaceIdInstace)
     const apiToken = useSelector(getAuthByInstaceApiToken)
@@ -35,9 +36,11 @@ export const AuthByInstaceForm = memo(() => {
             </div>
             <input className="p-2 rounded-lg w-80 mb-5 border-2" placeholder="Id Instance" value={idInstance} onChange={changeHandlerIdInstance}/>
             <input className="p-2 rounded-lg w-lg border-2" placeholder="Api token" value={apiToken} onChange={changeHandlerApiToken}/>
-            <button className="px-8 py-2 border mt-5 bg-green-600 text-white" onClick={onAuth}>
+            <Button onClick={onAuth} className="mt-5">
                 Авторизоватся
-            </button>
+            </Button>
         </form>
     )
 })
+
+export default AuthByInstaceForm

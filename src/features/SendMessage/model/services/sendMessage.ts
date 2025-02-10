@@ -22,7 +22,7 @@ export const sendMessage = createAsyncThunk<void, SendMessageArg, ThunkConfig<st
 
         try {
             const response = await extra.api.post(`/waInstance${userData.idInstance}/sendMessage/${userData.apiTokenInstance}`, {
-                chatId: `${chatId}@c.us`,
+                chatId: chatId,
                 message
             })
 

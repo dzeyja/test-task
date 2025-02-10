@@ -1,4 +1,6 @@
+import { AnyAction, CombinedState, EnhancedStore, Reducer, ReducersMapObject } from "@reduxjs/toolkit";
 import { AxiosInstance } from "axios";
+import { MesagesSchema } from "entities/Message";
 import { UserSchema } from "entities/User";
 import { AuthByInstanceSchema } from "features/AuthByInstace";
 import { CreateChatSchema } from "features/createChat";
@@ -9,6 +11,20 @@ export interface StateSchema {
     authByInstance: AuthByInstanceSchema
     sendMessage: SendMessageSchema
     createChat: CreateChatSchema
+    message: MesagesSchema
+}
+
+export type StateSchemaKey = keyof StateSchema
+
+export interface ReducerManager {
+    getReducerMap: () => ReducersMapObject<StateSchema>
+    reduce: (state: StateSchema, action: AnyAction) => CombinedState<StateSchema>;
+    add: (key: StateSchemaKey, reducer: Reducer) => void;
+    remove: (key: StateSchemaKey) => void;
+}
+
+export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {
+    reducerManager: ReducerManager
 }
 
 export interface ThunkExtraArg {

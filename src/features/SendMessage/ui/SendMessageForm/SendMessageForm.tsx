@@ -3,12 +3,13 @@ import { sendMessage } from "../../model/services/sendMessage"
 import { sendMessageActions } from "../../model/slice/sendMessageSlice"
 import React, { memo, useCallback } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { Button } from "shared/ui/Button/Button"
 
-interface SendMessageFormProps {
+export interface SendMessageFormProps {
     chatId: string
 }
 
-export const SendMessageForm = memo(({chatId}: SendMessageFormProps) => {
+const SendMessageForm = memo(({chatId}: SendMessageFormProps) => {
     const dispatch = useDispatch()
     const message = useSelector(getSendMessageMessage)
 
@@ -31,12 +32,14 @@ export const SendMessageForm = memo(({chatId}: SendMessageFormProps) => {
                 className="p-6 pr-20 rounded-lg border w-full" 
                 type="text" 
             />
-            <button 
-                onClick={onClickHandler} 
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 px-4 py-2 bg-primary text-white rounded-lg"
+            <Button 
+                onClick={onClickHandler}
+                className="absolute right-2 top-1/2 transform -translate-y-1/2"
             >
                 Отправить
-            </button>
+            </Button>
         </div>
     )
 })
+
+export default SendMessageForm

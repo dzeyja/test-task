@@ -1,12 +1,10 @@
-import { AuthByInstaceForm } from "features/AuthByInstace";
-import { CreateChatForm, getCreateChats } from "features/createChat";
+import { AuthByInstaceModal } from "features/AuthByInstace";
+import { CreateChatFormModal, getCreateChats } from "features/createChat";
 import { memo, useCallback, useState } from "react";
 import { CiLogin } from "react-icons/ci";
 import { IoCreateOutline } from "react-icons/io5";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { routeConfig } from "shared/config/routeConfig/routeConfig";
-import { Modal } from "shared/ui/Modal/Modal";
 
 export const Sidebar = memo(() => {
     const [isOpen, setIsOpen] = useState(false)
@@ -36,7 +34,7 @@ export const Sidebar = memo(() => {
     }, [navigate])
 
     return (
-        <div className='border w-80 h-screen bg-white shadow-xl'>
+        <div className='fixed border w-80 h-screen bg-white shadow-xl z-10'>
             <div className="w-full mb-10 p-6 flex justify-between items-center">
                 <div className="text-3xl font-bold">
                     Чаты
@@ -63,12 +61,8 @@ export const Sidebar = memo(() => {
                     </div>
                 )} 
             </div>
-            <Modal isOpen={isOpen} onClose={handleClose}>
-                <AuthByInstaceForm />
-            </Modal>
-            <Modal isOpen={isOpenChat} onClose={handleCloseChat}>
-                <CreateChatForm />
-            </Modal>
+            <AuthByInstaceModal isOpen={isOpen} onClose={handleClose} />
+            <CreateChatFormModal isOpen={isOpenChat} onClose={handleCloseChat} />
         </div>
     )
 })
